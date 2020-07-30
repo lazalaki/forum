@@ -19,7 +19,12 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body style="padding-bottom: 100px;">
+<style>
+    body { padding-bottom: 100px; }
+    .level { display: flex; align-items: center; }
+    .flex { flex: 1; }
+</style>
+<body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
@@ -33,8 +38,17 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="/threads">All Threads</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              Browse
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a href="/threads" class="dropdown-item">All Threads</a></li>
+                                @if(auth()->check())
+                                <li><a href="/threads?by={{ auth()->user()->name}}" class="dropdown-item">My Threads</a></li>
+                                @endif
+                                <li><a href="/threads?popular=1" class="dropdown-item">Popular All Time</a></li>
+                            </ul>
                         </li>
 
                         <li class="nav-item">
