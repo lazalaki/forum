@@ -20,7 +20,7 @@ class ThreadFilters extends Filters {
 
     protected function popular()
     {
-        $this->builder->getQuery()->orders = [];
+        $this->builder->getQuery()->orders = [];// da izbaci latest() i gleda po popularnosti
         
         return $this->builder->orderBy('replies_count', 'desc');
     }
