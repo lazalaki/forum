@@ -18,8 +18,8 @@
                         <div class="card-header">
                             <div class="level">
                                 <span class="flex">
-                                    <a href="#">{{ $thread->creator->name }}</a> said:
-                                    {{ $thread->title }}
+                                    <a href="{{ route('profile', $thread->creator)}}">{{ $thread->creator->name }}</a> said:
+                                    <a href="{{ $thread->path() }}">{{$thread->title }}</a>
                                 </span>
         
                                 <span>{{ $thread->created_at->diffForHumans() }}</span>
