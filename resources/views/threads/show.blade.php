@@ -8,7 +8,7 @@
                 <div class="card-header">
                     <div class="level">
                         <span class="flex">
-                            <a href="{{ route('profile', $thread->creator->name) }}">{{ $thread->creator->name }}</a> said:
+                            <a href="{{ route('profile', $thread->creator->name) }}">{{ $thread->creator->name }}</a> posted:
                             {{ $thread->title }}
                         </span>
                         
