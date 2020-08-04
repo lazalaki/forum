@@ -13,7 +13,7 @@ class RepliesController extends Controller
     {
         $this->middleware('auth');    
     }
-    
+
     
     public function store($channelId ,Thread $thread)
     {
@@ -43,6 +43,10 @@ class RepliesController extends Controller
         $this->authorize('update', $reply);
 
         $reply->delete();
+
+        if(request()->expectsJson()) {
+            return response(['status' => 'Reply Deleted']);
+        }
 
         return back();
     }
