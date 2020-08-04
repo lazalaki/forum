@@ -14,6 +14,7 @@ class RepliesController extends Controller
         $this->middleware('auth');    
     }
     
+    
     public function store($channelId ,Thread $thread)
     {
         request()->validate([
@@ -27,6 +28,15 @@ class RepliesController extends Controller
 
         return back()->with('flash', 'Your reply has been left.');
     }
+
+
+    public function update(Reply $reply)
+    {
+        $this->authorize('update', $reply);
+
+        $reply->update(['body' => request('body')]);
+    }
+
 
     public function destroy(Reply $reply)
     {
