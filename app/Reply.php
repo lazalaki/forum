@@ -11,6 +11,8 @@ class Reply extends Model
     protected $guarded = [];
 
     protected $with = ['owner', 'favorites'];
+
+    protected $appends = ['favoritesCount', 'isFavorited'];// favoritesCount je iz metode getFavoritesCountAttribute iz Favoritible.php, laravel sam prepoznaje sta se nalazi izmedju get i attribute
     
     public function owner()
     {
