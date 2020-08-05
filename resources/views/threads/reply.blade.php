@@ -10,8 +10,11 @@
                 said {{ $reply->created_at->diffForHumans() }}
             </h5>
 
+            @if(Auth::check())
              <div>
                  <favorite-component :reply="{{ $reply }}"></favorite-component>
+
+
                 {{-- <form method="POST" action="/replies/{{ $reply->id }}/favorites">
                     @csrf
                     <button type="submit" class="btn btn-primary" {{ $reply->isFavorited() ? 'disabled' : '' }}>
@@ -19,6 +22,7 @@
                     </button>
                  </form> --}}
              </div>
+             @endif
         </div>
     </div>         
         
