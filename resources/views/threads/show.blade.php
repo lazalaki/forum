@@ -30,12 +30,14 @@
                     </div>                
                 </div>
 
-                <replies-component :data="{{ $thread->replies }}" @removed="repliesCount--"></replies-component>
+                <replies-component :data="{{ $thread->replies }}" 
+                        @added="repliesCount++"
+                        @removed="repliesCount--"></replies-component>
 
 
                 {{ $replies->links() }}
 
-                @if(auth()->check())
+                {{-- @if(auth()->check())
                     <form method="POST" action={{ $thread->path() . '/replies' }}>
                         @csrf
                         <div class="form-group">
@@ -45,7 +47,7 @@
                     </form>
                 @else
                     <p class="text-center">Please <a href={{ route('login')}}>Log In</a> to participate in this discussion</p>
-                @endif
+                @endif --}}
             </div>
 
             <div class="col-md-4">
