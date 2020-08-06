@@ -25,6 +25,7 @@
     },
     "dependencies": {
         "icons": "^1.0.0",
-        "material": "^0.4.3"
+        "material": "^0.4.3",
+        "moment": "^2.27.0"
     }
 }

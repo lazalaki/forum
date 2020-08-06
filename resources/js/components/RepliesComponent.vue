@@ -1,50 +1,60 @@
 <template>
     <div>
-        <div v-for="(reply, index) in items" :key="index">
+        <div v-for="(reply, index) in items" :key="reply.id">
             <reply-component :data="reply" @deleted="remove(index)"></reply-component>
         </div>
 
-        <new-reply-component :endpoint="endpoint" @created="add"></new-reply-component>
+        <paginator-component :dataSet="dataSet" @updated="fetch"></paginator-component>
+
+        <new-reply-component @created="add"></new-reply-component>
     </div>
 </template>
 
 <script>
 import ReplyComponent from './ReplyComponent'
 import NewReplyComponent from './NewReplyComponent'
+import collection from '../mixins/collection'
+
     export default {
-        props: ['data'],
+
+        mixins: [collection],
 
         components: {
             ReplyComponent,
-            NewReplyComponent
+            NewReplyComponent,
         },
 
         data() {
             return {
-                items: this.data,
-                endpoint: location.pathname + '/replies'
+                dataSet: false,
             }
         },
 
+        created() {
+            this.fetch()
+        },
+
         methods: {
-
-            add(reply) {
-                this.items.push(reply)
-
-                this.$emit('added')
+            fetch(page) {
+                axios.get(this.url(page))
+                    .then(this.refresh);
             },
 
-            remove(index) {
-                this.items.splice(index, 1)
+            url(page) {
+                if(! page) {
+                    let query = location.search.match(/page=(\d+)/)
 
-                this.$emit('removed')
+                    page = query ? query[1] : 1
+                }
+                return `${location.pathname}/replies?page=${page}` 
+            },
 
-                flash('Reply was deleted')
-            }
+
+            refresh({data}) {
+                this.dataSet = data;
+                this.items = data.data;
+            },
+
         }
     }
 </script>
-
-<style lang="scss" scoped>
-
-</style>

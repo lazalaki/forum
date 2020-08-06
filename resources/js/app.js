@@ -32,9 +32,7 @@ window.flash = function( message ) {
 
 Vue.component('flash-component', require('./components/FlashComponent.vue').default);
 Vue.component('thread-component', require('./pages/ThreadComponent.vue').default);
-// Vue.component('reply-component', require('./components/ReplyComponent.vue').default);
-// Vue.component('favorite-component', require('./components/FavoriteComponent.vue').default);
-// Vue.component('replies-component', require('./components/RepliesComponent.vue').default);
+Vue.component('paginator-component', require('./components/PaginatorComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
