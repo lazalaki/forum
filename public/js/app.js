@@ -2184,6 +2184,7 @@ __webpack_require__.r(__webpack_exports__);
       var data = _ref.data;
       this.dataSet = data;
       this.items = data.data;
+      window.scrollTo(0, 0);
     }
   }
 });
@@ -59963,7 +59964,7 @@ var render = function() {
       _vm._v(" "),
       _c("paginator-component", {
         attrs: { dataSet: _vm.dataSet },
-        on: { updated: _vm.fetch }
+        on: { changed: _vm.fetch }
       }),
       _vm._v(" "),
       _c("new-reply-component", { on: { created: _vm.add } })

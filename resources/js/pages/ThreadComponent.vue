@@ -1,11 +1,12 @@
 <template>
     <div>
-
+        
     </div>
 </template>
 
 <script>
 import RepliesComponent from '../components/RepliesComponent'
+
     export default {
         props: ['initialRepliesCount'],
 

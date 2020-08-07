@@ -37,14 +37,14 @@ class ReadThreadsTest extends TestCase
             ->assertSee($this->thread->title);
     }
 
-    /** @test */
-    function a_user_can_read_replies_that_are_associated_with_a_thread()
-    {
-        $reply = factory('App\Reply')->create(['thread_id' => $this->thread->id]);
+    // /** @test */
+    // function a_user_can_read_replies_that_are_associated_with_a_thread()
+    // {
+    //     $reply = factory('App\Reply')->create(['thread_id' => $this->thread->id]);
 
-        $this->get($this->thread->path())
-            ->assertSee($reply->body);
-    }
+    //     $this->get($this->thread->path())
+    //         ->assertSee($reply->body);
+    // }
 
 
     /** @test */
@@ -61,6 +61,7 @@ class ReadThreadsTest extends TestCase
     }
 
 
+
     /** @test */
     function a_user_can_filter_threads_by_any_username()
     {
@@ -74,11 +75,13 @@ class ReadThreadsTest extends TestCase
             ->assertDontSee($threadNotByJohn->title);
     }
 
+
+
     /** @test */
     function a_user_can_filter_threads_by_popularity()
     {
         $threadWithTwoReplies = create('App\Thread');
-        create('App\Reply', ['thread_id' => $threadWithTwoReplies->id], 2);
+        $replies = create('App\Reply', ['thread_id' => $threadWithTwoReplies->id], 2);
 
         $threadWithThreeReplies = create('App\Thread');
         create('App\Reply', ['thread_id' => $threadWithThreeReplies->id], 3);
@@ -86,9 +89,22 @@ class ReadThreadsTest extends TestCase
         $threadWithNoReplies = $this->thread;
 
         $response = $this->getJson('threads?popular=1')->json();
-
-        $this->assertEquals([3, 2, 0], array_column($response, 'replies_count'));
+        $this->assertEquals([3, 2, 0], array_column($response['data'], 'replies_count'));
     }
+
+
+
+    /** @test */
+    function a_user_can_filter_threads_by_those_that_are_unanswered()
+    {
+        $thread = create('App\Thread');
+        create('App\Reply', ['thread_id' => $thread->id]);
+
+        $response = $this->getJson('threads?unanswered=1')->json();
+        $this->assertCount(1, $response['data']);
+    }
+
+
 
     /** @test */
     function a_user_can_request_all_replies_for_a_given_thread()

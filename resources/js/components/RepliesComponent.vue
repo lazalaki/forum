@@ -4,7 +4,7 @@
             <reply-component :data="reply" @deleted="remove(index)"></reply-component>
         </div>
 
-        <paginator-component :dataSet="dataSet" @updated="fetch"></paginator-component>
+        <paginator-component :dataSet="dataSet" @changed="fetch"></paginator-component>
 
         <new-reply-component @created="add"></new-reply-component>
     </div>
@@ -53,6 +53,8 @@ import collection from '../mixins/collection'
             refresh({data}) {
                 this.dataSet = data;
                 this.items = data.data;
+
+                window.scrollTo(0, 0);
             },
 
         }
