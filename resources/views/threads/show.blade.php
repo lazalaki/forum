@@ -41,6 +41,9 @@
                             <a href="#">{{ $thread->creator->name }}</a> and currently has 
                             <span v-text="repliesCount"></span> {{ Str::plural('comment', $thread->replies_count) }}.
                         </p>
+                        <p>
+                            <subscribe-button-component :avtive="{{ json_encode($thread->isSubscribedTo) }}"></subscribe-button-component>
+                        </p>
                     </div>                
                 </div>
             </div>
