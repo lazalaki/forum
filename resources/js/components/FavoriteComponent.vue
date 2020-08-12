@@ -1,7 +1,7 @@
 <template>
     <div>
         <button type="submit" :class="classes" @click="toggle">
-            <i class="glyphicon glyphicon-heart">Favorited</i>
+            <i class="fa fa-heart"></i>
             <span v-text="favoritesCount"></span>
         </button>
     </div>

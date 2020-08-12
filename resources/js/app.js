@@ -33,6 +33,7 @@ window.flash = function( message ) {
 Vue.component('flash-component', require('./components/FlashComponent.vue').default);
 Vue.component('thread-component', require('./pages/ThreadComponent.vue').default);
 Vue.component('paginator-component', require('./components/PaginatorComponent.vue').default);
+Vue.component('user-notification-component', require('./components/UserNotificationComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
