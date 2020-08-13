@@ -2,8 +2,6 @@
 
 namespace Tests\Unit;
 
-// use PHPUnit\Framework\TestCase;
-
 use Carbon\Carbon;
 use Tests\TestCase;
 use App\Notifications\ThreadWasUpdated;

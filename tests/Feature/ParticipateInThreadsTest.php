@@ -2,8 +2,10 @@
 
 namespace Tests\Feature;
 
+use Exception;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Notifications\DatabaseNotification;
 use Tests\TestCase;
 
 class ParticipateInForumTest extends TestCase
@@ -20,13 +22,12 @@ class ParticipateInForumTest extends TestCase
 
 
     /** @test */
-    function an_authenticated_user_can_participate_in_forum_threads()
+    function an_authenticated_user_may_participate_in_forum_threads()
     {
-        $this->be($user = factory('App\User')->create());//Ako imamo ulogovanog usera
+        $this->signIn();
 
-        $thread = factory('App\Thread')->create();
-
-        $reply = factory('App\Reply')->create();
+        $thread = create('App\Thread');
+        $reply = make('App\Reply');
 
         $this->post($thread->path() . '/replies', $reply->toArray());
 
@@ -87,6 +88,8 @@ class ParticipateInForumTest extends TestCase
         $this->assertDatabaseHas('replies', ['body' => $updatedReply]);
     }
 
+
+
     /** @test */
     function authorized_user_cannot_update_replies()
     {
@@ -100,4 +103,23 @@ class ParticipateInForumTest extends TestCase
                 ->patch("/replies/{$reply->id}")
                 ->assertStatus(403);
     }
+
+
+
+    /** @test */
+    function replies_that_contain_spam_may_not_be_created()
+    {
+        $this->withoutExceptionHandling();
+        $this->signIn();
+
+        $thread = create('App\Thread');
+        $reply = make('App\Reply', [
+            'body' => 'Yahoo Customer Support'
+        ]);
+
+        $this->expectException(\Exception::class);
+
+        $this->post($thread->path() . '/replies', $reply->toArray());
+    }
+
 }

@@ -123,4 +123,5 @@ class Thread extends Model
 
         return $this->updated_at > cache($key);
     }
+
 }
