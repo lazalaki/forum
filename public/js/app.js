@@ -60200,7 +60200,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("button", { class: _vm.classes, on: { click: _vm.subscribe } }, [
-      _vm._v(_vm._s(this.active ? "Unsubscribe" : "Subscribe"))
+      _vm._v("Subscribe")
     ])
   ])
 }
