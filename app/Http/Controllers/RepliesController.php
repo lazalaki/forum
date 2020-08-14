@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Reply;
-use App\Thread;
 use Exception;
+use App\Thread;
+use App\Inspections\Spam;
 use Illuminate\Http\Request;
 
 class RepliesController extends Controller
