@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Reply;
 use Carbon\Carbon;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -63,5 +64,11 @@ class User extends Authenticatable
     public function read($thread)
     {
         cache()->forever($this->visitedThreadCacheKey($thread), \Carbon\Carbon::now());
+    }
+
+
+    public function lastReply()
+    {
+        return $this->hasOne(Reply::class)->latest();
     }
 }
