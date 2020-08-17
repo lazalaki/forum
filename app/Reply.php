@@ -48,6 +48,6 @@ class Reply extends Model
 
     public function wasJustPublished()
     {
-        return $this->created_at->gt(Carbon::now()->subMinutes());
+        return $this->created_at->gt(Carbon::now()->subMinutes());//da li je created_at > od Carbon::now - 1min
     }
 }

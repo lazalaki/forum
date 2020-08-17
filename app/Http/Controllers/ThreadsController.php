@@ -78,7 +78,7 @@ class ThreadsController extends Controller
     
     public function show($channel, Thread $thread)
     {
-        if(auth()->check()) {
+        if (auth()->check()) {
             auth()->user()->read($thread);
         }
 

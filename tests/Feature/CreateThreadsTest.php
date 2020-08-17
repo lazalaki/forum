@@ -124,7 +124,6 @@ class CreateThreadsTest extends TestCase
         $this->signIn();
 
         $thread = make('App\Thread', $overrides);
-
         return $this->post('/threads', $thread->toArray());
     }
 }

@@ -8,7 +8,7 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Notifications\DatabaseNotification;
 use Tests\TestCase;
 
-class ParticipateInForumTest extends TestCase
+class ParticipateInThreadsTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -38,13 +38,13 @@ class ParticipateInForumTest extends TestCase
     /** @test */
     function a_reply_requires_a_body()
     {
-        $this->signIn();
+        $this->withExceptionHandling()->signIn();
 
         $thread = create('App\Thread');
         $reply = make('App\Reply', ['body' => null]);
 
-        $response = $this->post($thread->path() . '/replies', $reply->toArray());
-        $response->assertStatus(422);
+        $this->post($thread->path() . '/replies', $reply->toArray())
+             ->assertSessionHasErrors('body');
     }
 
     /** @test */
@@ -116,7 +116,7 @@ class ParticipateInForumTest extends TestCase
             'body' => 'Yahoo Customer Support'
         ]);
 
-        $this->post($thread->path() . '/replies', $reply->toArray())
+        $this->json('post', $thread->path() . '/replies', $reply->toArray())
             ->assertStatus(422);
     }
 
