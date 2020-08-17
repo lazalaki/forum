@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Reply;
 use Exception;
 use App\Thread;
-use Illuminate\Http\Request;
 use App\Http\Requests\CreatePostRequest;
 
 class RepliesController extends Controller
@@ -25,7 +24,14 @@ class RepliesController extends Controller
     
     public function store($channelId ,Thread $thread, CreatePostRequest $form)
     {
-        return $form->persist($thread);
+        $reply = $thread->addReply([
+            'body' => request('body'),
+            'user_id' => auth()->id()
+        ]);
+
+        
+
+        return $reply->load('owner');
     }
 
 

@@ -35,10 +35,12 @@ class Reply extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
+
     public function thread()
     {
         return $this->belongsTo(Thread::class);
     }
+
 
     public function path()
     {
@@ -49,5 +51,13 @@ class Reply extends Model
     public function wasJustPublished()
     {
         return $this->created_at->gt(Carbon::now()->subMinutes());//da li je created_at > od Carbon::now - 1min
+    }
+
+
+    public function mentionedUsers()
+    {
+        preg_match_all('/\@([^\s\.]+)/', $this->body, $matches);
+
+        return $matches[1];
     }
 }
