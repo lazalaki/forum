@@ -24,9 +24,12 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "at.js": "^1.5.4",
         "font-awesome": "^4.7.0",
         "icons": "^1.0.0",
+        "jquery.caret": "^0.3.1",
         "material": "^0.4.3",
-        "moment": "^2.27.0"
+        "moment": "^2.27.0",
+        "tributejs": "^5.1.3"
     }
 }

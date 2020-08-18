@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
+use App\Reply;
 use App\Thread;
 use App\Channel;
-use App\Filters\ThreadFilters;
-use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use App\Filters\ThreadFilters;
 
 class ThreadsController extends Controller
 {

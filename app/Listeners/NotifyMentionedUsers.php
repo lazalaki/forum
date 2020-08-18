@@ -28,15 +28,25 @@ class NotifyMentionedUsers
      */
     public function handle(ThreadReceivedNewReply $event)
     {
-        collect($event->reply->mentionedUsers())
-            ->map(function ($name) {
-                return User::where('name', $name)->first();
-            })
-            ->filter()
+        // 1. NACIN!!!
+        User::whereIn('name', $event->reply->mentionedUsers())->get()
             ->each(function ($user) use ($event) {
                 $user->notify(new YouAreMentioned($event->reply));
             });
 
+
+        // 2. NACIN!!!
+        // collect($event->reply->mentionedUsers())
+        //     ->map(function ($name) {
+        //         return User::where('name', $name)->first();
+        //     })
+        //     ->filter()
+        //     ->each(function ($user) use ($event) {
+        //         $user->notify(new YouAreMentioned($event->reply));
+        //     });
+
+
+        // 3. NACIN!!!
         // $mentionedUsers = $event->reply->mentionedUsers();
 
         // foreach($mentionedUsers as $name) {
