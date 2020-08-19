@@ -34,6 +34,7 @@ Vue.component('flash-component', require('./components/FlashComponent.vue').defa
 Vue.component('thread-component', require('./pages/ThreadComponent.vue').default);
 Vue.component('paginator-component', require('./components/PaginatorComponent.vue').default);
 Vue.component('user-notification-component', require('./components/UserNotificationComponent.vue').default);
+Vue.component('avatar-form-component', require('./components/AvatarFormComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

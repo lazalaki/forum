@@ -6,10 +6,7 @@
         <div class="row">
             <div class="col-md-8" style="float:none;margin:auto;">
                 <div class="mb-3">
-                    <h1>
-                        {{ $profileUser->name }}
-                    </h1>
-                    <hr>
+                    <avatar-form-component :user="{{ $profileUser }}"></avatar-form-component>                    
                 </div>
         
                 @forelse ($activities as $date => $activity)

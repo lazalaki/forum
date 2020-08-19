@@ -20,7 +20,7 @@
                                 </h4>
                                 
                                 <h5>
-                                    Created by: <a href="{{ route('profile', $thread->creator)}}">{{ $thread->creator->name }}</a>
+                                Created by: <a href="/profiles/{{$thread->creator}}">{{ $thread->creator->name }}</a>
                                 </h5>
                             </div>
 
