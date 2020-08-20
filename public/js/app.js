@@ -3383,6 +3383,7 @@ __webpack_require__.r(__webpack_exports__);
           $.getJSON("/api/users", {
             name: query
           }, function (usernames) {
+            //autocomplete mentioning @JaneDoe
             callback(usernames);
           });
         }
