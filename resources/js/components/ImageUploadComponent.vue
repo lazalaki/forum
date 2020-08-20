@@ -1,8 +1,5 @@
 <template>
-    <div>
         <input type="file" accept="image/*" @change="onChange">
-        <button type="submit">Add Avatar</button>
-    </div>
 </template>
 
 <script>
@@ -21,7 +18,3 @@
         }
     }
 </script>
-
-<style lang="scss" scoped>
-
-</style>
