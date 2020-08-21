@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Thread extends Model
 {
-    use RecordsActivity, RecordsVisits;
+    use RecordsActivity;
 
     protected $guarded = [];
 
@@ -121,8 +121,6 @@ class Thread extends Model
 
         return $this->updated_at > cache($key);
     }
-
-
 
 
 }
