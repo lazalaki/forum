@@ -50,7 +50,6 @@ trait Favoritable
     }
 
 
-
     public function getFavoritesCountAttribute()
     {
         return $this->favorites->count();
