@@ -1,7 +1,7 @@
 <template>
     <div>
         <div :id="'reply-' + id" class="card mb-3">
-            <div class="card-header">
+            <div class="card-header" :class="isBest ? 'bg-success' : 'bg-default'">
                 <div class="level">
                     <h5 class="flex">    
                         <a :href="'/profiles' + data.owner.name"
@@ -29,9 +29,12 @@
                 <div v-else v-html="body"></div>
                 
             </div>
-                <div class="card-footer level" v-if="canUpdate">
-                    <button class="btn btn-outline-secondary btn-sm mr-2" @click="editing = true">Edit</button>
-                    <button class="btn btn-outline-danger btn-sm mr-2" @click="destroy">Delete</button>
+                <div class="card-footer level">
+                    <div v-if="canUpdate">
+                        <button class="btn btn-outline-secondary btn-sm mr-2" @click="editing = true">Edit</button>
+                        <button class="btn btn-outline-danger btn-sm mr-2" @click="destroy">Delete</button>
+                    </div>
+                    <button class="btn btn-outline-secondary btn-sm ml-auto" @click="markBestReply" v-show="!isBest">Best Reply?</button>
                 </div>
         </div>
     </div>
@@ -52,7 +55,8 @@ import moment from 'moment';
             return {
                 editing: false,
                 id: this.data.id,
-                body: this.data.body
+                body: this.data.body,
+                isBest: false
             }
         },
 
@@ -89,6 +93,10 @@ import moment from 'moment';
 
                 this.$emit('deleted', this.data.id);
 
+            },
+
+            markBestReply() {
+                this.isBest = true;
             }
         }
     }
