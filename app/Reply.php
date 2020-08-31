@@ -13,7 +13,7 @@ class Reply extends Model
 
     protected $with = ['owner', 'favorites'];
 
-    protected $appends = ['favoritesCount', 'isFavorited'];// favoritesCount je iz metode getFavoritesCountAttribute iz Favoritible.php, laravel sam prepoznaje sta se nalazi izmedju get i attribute
+    protected $appends = ['favoritesCount', 'isFavorited', 'isBest'];// favoritesCount je iz metode getFavoritesCountAttribute iz Favoritible.php, laravel sam prepoznaje sta se nalazi izmedju get i attribute
     
     protected static function boot()
     {
@@ -71,5 +71,11 @@ class Reply extends Model
     public function isBest()
     {
         return $this->thread->best_reply_id == $this->id;
+    }
+
+
+    public function getIsBestAttribute()
+    {
+        return $this->isBest();
     }
 }
