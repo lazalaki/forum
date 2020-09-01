@@ -9,7 +9,7 @@ import RepliesComponent from '../components/RepliesComponent'
 import SubscribeButtonComponent from '../components/SubscribeButtonComponent'
 
     export default {
-        props: ['initialRepliesCount'],
+        props: ['dataRepliesCount', 'dataLocked'],
 
         components: {
             RepliesComponent,
@@ -18,7 +18,8 @@ import SubscribeButtonComponent from '../components/SubscribeButtonComponent'
 
         data() {
             return {
-                repliesCount: this.initialRepliesCount
+                repliesCount: this.dataRepliesCount,
+                locked: this.dataLocked
             }
         }
     }
