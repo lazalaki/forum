@@ -22,8 +22,8 @@
                         <div class="form-group">
                             <textarea class="form-control" v-model="body" required></textarea>
                         </div>
-                        <button class="btn btn-sm btn-outline-secondary">Update</button>
-                        <button class="btn btn-sm btn-link" @click="editing = false" type="button">Cancel</button>
+                        <button class="btn btn-sm btn-secondary">Update</button>
+                        <button class="btn btn-sm btn-danger" @click="editing = false" type="button">Cancel</button>
                     </form>
                 </div>
                 <div v-else v-html="body"></div>
@@ -31,8 +31,8 @@
             </div>
                 <div class="card-footer level" v-if="authorize('owns', reply) || authorize('owns', reply.thread)">
                     <div v-if="authorize('owns', reply)">
-                        <button class="btn btn-outline-secondary btn-sm mr-2" @click="editing = true">Edit</button>
-                        <button class="btn btn-outline-danger btn-sm mr-2" @click="destroy">Delete</button>
+                        <button class="btn btn-secondary btn-sm mr-2" @click="editing = true">Edit</button>
+                        <button class="btn btn-danger btn-sm mr-2" @click="destroy">Delete</button>
                     </div>
 
                     <button class="btn btn-outline-secondary btn-sm ml-auto" @click="markBestReply" v-if="authorize('owns', reply.thread)">Best Reply?</button>

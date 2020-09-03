@@ -19,7 +19,8 @@ import SubscribeButtonComponent from '../components/SubscribeButtonComponent'
         data() {
             return {
                 repliesCount: this.thread.replies_count,
-                locked: this.thread.locked
+                locked: this.thread.locked,
+                editing: false,
             }
         },
 

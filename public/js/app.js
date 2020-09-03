@@ -3754,7 +3754,8 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       repliesCount: this.thread.replies_count,
-      locked: this.thread.locked
+      locked: this.thread.locked,
+      editing: false
     };
   },
   methods: {
@@ -62020,16 +62021,14 @@ var render = function() {
                   })
                 ]),
                 _vm._v(" "),
-                _c(
-                  "button",
-                  { staticClass: "btn btn-sm btn-outline-secondary" },
-                  [_vm._v("Update")]
-                ),
+                _c("button", { staticClass: "btn btn-sm btn-secondary" }, [
+                  _vm._v("Update")
+                ]),
                 _vm._v(" "),
                 _c(
                   "button",
                   {
-                    staticClass: "btn btn-sm btn-link",
+                    staticClass: "btn btn-sm btn-danger",
                     attrs: { type: "button" },
                     on: {
                       click: function($event) {
@@ -62052,7 +62051,7 @@ var render = function() {
                   _c(
                     "button",
                     {
-                      staticClass: "btn btn-outline-secondary btn-sm mr-2",
+                      staticClass: "btn btn-secondary btn-sm mr-2",
                       on: {
                         click: function($event) {
                           _vm.editing = true
@@ -62065,7 +62064,7 @@ var render = function() {
                   _c(
                     "button",
                     {
-                      staticClass: "btn btn-outline-danger btn-sm mr-2",
+                      staticClass: "btn btn-danger btn-sm mr-2",
                       on: { click: _vm.destroy }
                     },
                     [_vm._v("Delete")]
