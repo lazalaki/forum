@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-<thread-component :data-replies-count="{{ $thread->replies_count }}" :data-locked="{{ $thread->locked }}" inline-template>
+<thread-component :thread="{{ $thread }}" inline-template>
     <div class="container">
         <div class="row">
             <div class="col-md-8">
@@ -51,9 +51,16 @@
                             <span v-text="repliesCount"></span> {{ Str::plural('comment', $thread->replies_count) }}.
                         </p>
                         <p class="d-flex">
-                            <subscribe-button-component :avtive="{{ json_encode($thread->isSubscribedTo) }}" v-if="signedIn"></subscribe-button-component>
+                            <subscribe-button-component 
+                                :avtive="{{ json_encode($thread->isSubscribedTo) }}" 
+                                v-if="signedIn">
+                            </subscribe-button-component>
 
-                            <button class="btn btn-secondary ml-2" v-if="authorize('isAdmin') && !locked" @click="locked = true">Lock</button>
+                            <button class="btn btn-secondary ml-2" 
+                                v-if="authorize('isAdmin')" 
+                                @click="toggleLock" 
+                                v-text="locked ? 'Unlock' : 'Lock'">Lock
+                            </button>
                         </p>
                     </div>                
                 </div>
