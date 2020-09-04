@@ -11,6 +11,26 @@
         </div>
 
         <div class="col-md-4">
+
+            <div class="card mb-4">
+                <div class="card-header">
+                    Search
+                </div>
+
+                <div class="card-body">
+                    <form method="GET" action="/threads/search">
+                        @csrf
+                        <div class="form-group">
+                            <input type="text" placeholder="Search for something..." name="q" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <button class="form-control" type="submit">Search</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
             @if(count($trending))
                 <div class="card">
                     <div class="card-header">
