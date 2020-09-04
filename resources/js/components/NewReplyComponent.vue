@@ -2,13 +2,14 @@
     <div>
         <div v-if="signedIn">
             <div class="form-group">
-                <textarea name="body" 
+                <wysiwyg-component name="body" v-model="body" placeholder="Have something to say?" :shouldClear="completed"></wysiwyg-component>
+                <!-- <textarea name="body" 
                         id="body" 
                         class="form-control" 
                         rows="5" 
                         placeholder="Have something to say?"
                         required
-                        v-model="body"></textarea>
+                        v-model="body"></textarea> -->
             </div>
             <button type="submit" 
                     class="btn btn-primary"
@@ -29,6 +30,7 @@ import 'at.js';
         data() {
             return {
                 body: '',
+                completed: false
             }
         },
 
@@ -51,7 +53,10 @@ import 'at.js';
                 axios.post(location.pathname + '/replies', { body: this.body })
                     .then(response => {
                         this.body = ''
+                        this.completed = true
+
                         flash('Your reply has been posted')
+
                         this.$emit('created', response.data)
                     })
                     .catch(error => {

@@ -155,4 +155,8 @@ class Thread extends Model
         $this->update(['best_reply_id' => $reply->id]);
     }
 
+    public function toSearchableArray()
+    {
+        return $this->toArray() + ['path' => $this->path()];
+    }
 }
