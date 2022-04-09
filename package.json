@@ -32,7 +32,7 @@
         "instantsearch.css": "^7.4.4",
         "jquery.caret": "^0.3.1",
         "material": "^0.4.3",
-        "moment": "^2.27.0",
+        "moment": "^2.29.2",
         "tributejs": "^5.1.3",
         "trix": "^1.2.4",
         "vue-instantsearch": "^1.3.2",
